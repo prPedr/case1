@@ -1,10 +1,35 @@
+tarefas = []
+
 while True:
-    opcao = input("Adicione uma tarefa ou digite 'sair' para finalizar: ")
+  print("|----------------------|")
+  print("|    Menu de opcoes    |")
+  print("|----------------------|")
+  print("| 1 - Adicionar tarefa |")
+  print("| 2 - Listar tarefas   |")
+  print("| 3 - Remover tarefas  |")
+  print("| 4 - Sair             |")
+  print("|----------------------|")
 
-    if opcao.lower() == "sair":
-        break
-    tarefa = opcao
+  print()
 
-    print(f"Nova tarefa adicionada: {tarefa}")
+  escolha = input("Escolha uma opcao: ")
 
-print(f"Ultima tarefa adicionada: {tarefa}")
+  if escolha == "1":
+    tarefa = input("Digite a tarefa: ")
+    tarefas.append(tarefa)
+    print(f"Tarefa adicionada {tarefa}")
+  elif escolha == "2":
+    for tarefa in tarefas:
+      print(f"- {tarefa}")
+  elif escolha == "3":
+    remover = input("Digite a tarefa que deseja remover: ")
+    if remover in tarefas:
+      tarefas.remove(remover)
+      print(f"Tarefa removida {remover}")
+    else:
+      print("Tarefa nao encontrada")
+  elif escolha == "4":
+      print("Saindo...")
+      break
+  else:
+    print("Opcao invalida")
