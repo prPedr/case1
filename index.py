@@ -15,19 +15,31 @@ while True:
   escolha = input("Escolha uma opcao: ")
 
   if escolha == "1":
-    tarefa = input("Digite a tarefa: ")
-    tarefas.append(tarefa)
-    print(f"Tarefa adicionada {tarefa}")
+    nome = input("Digite o nome da tarefa: ")
+    prioridade = input("Digite a prioridade da tarefa (Alta, Media, Baixa): ")
+
+    tarefa = {
+      "nome": nome,
+      "prioridade": prioridade
+    }
+
+    tarefas.append(nome)
+    print(f"Tarefa {nome} com prioridade {prioridade} adicionada")
+
   elif escolha == "2":
     for tarefa in tarefas:
-      print(f"- {tarefa}")
+      print(f"- {tarefa[nome]} (Prioridade: {tarefa[prioridade]})")
+
   elif escolha == "3":
-    remover = input("Digite a tarefa que deseja remover: ")
-    if remover in tarefas:
-      tarefas.remove(remover)
-      print(f"Tarefa removida {remover}")
+    remover = input("Digite o nome da tarefa que deseja remover: ")
+    for tarefa in tarefas:
+      if tarefa["nome"] == remover:
+        tarefas.remove(remover)
+        print(f"Tarefa removida: {remover}")
+        break
     else:
       print("Tarefa nao encontrada")
+
   elif escolha == "4":
       print("Saindo...")
       break
