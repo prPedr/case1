@@ -23,18 +23,19 @@ while True:
       "prioridade": prioridade
     }
 
-    tarefas.append(nome)
+    tarefas.append(tarefa)
     print(f"Tarefa {nome} com prioridade {prioridade} adicionada")
 
   elif escolha == "2":
+    print("Lista de tarefas:")
     for tarefa in tarefas:
-      print(f"- {tarefa[nome]} (Prioridade: {tarefa[prioridade]})")
+      print(f"- {tarefa["nome"]} (Prioridade: {tarefa["prioridade"]})")
 
   elif escolha == "3":
     remover = input("Digite o nome da tarefa que deseja remover: ")
     for tarefa in tarefas:
       if tarefa["nome"] == remover:
-        tarefas.remove(remover)
+        tarefas.remove(tarefa)
         print(f"Tarefa removida: {remover}")
         break
     else:
