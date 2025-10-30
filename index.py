@@ -1,48 +1,42 @@
 tarefas = []
 
 while True:
-  print("|----------------------|")
-  print("|    Menu de opcoes    |")
-  print("|----------------------|")
-  print("| 1 - Adicionar tarefa |")
-  print("| 2 - Listar tarefas   |")
-  print("| 3 - Remover tarefas  |")
-  print("| 4 - Sair             |")
-  print("|----------------------|")
+    print("|---- Menu de Opções ----|")
+    print("| 1 - Adicionar tarefa   |")
+    print("| 2 - Remover tarefa     |")
+    print("| 3 - Ver tarefas        |")
+    print("| 4 - Sair               |")
+    print("|------------------------|")
 
-  print()
+    opcao = input("Escolha uma opcão: ")
+    if opcao == "1":
+        adicionar_tarefa = input("Digite a tarefa que deseja adicionar: ")
+        adicionar_prioridade = input("Digite a prioridade da tarefa (Alta, Média, Baixa): ")
+        
+        tarefa = {
+            "tarefa": adicionar_tarefa,
+            "prioridade": adicionar_prioridade
+        }
 
-  escolha = input("Escolha uma opcao: ")
+        tarefas.append(tarefa)
+        print(f"Tarefa '{adicionar_tarefa}' com prioridade '{adicionar_prioridade}' adicionada com sucesso!")
 
-  if escolha == "1":
-    nome = input("Digite o nome da tarefa: ")
-    prioridade = input("Digite a prioridade da tarefa (Alta, Media, Baixa): ")
+    elif opcao == "2":
+        print("Lista de tarefas:")
+        for tarefa in tarefas:
+            print(f"- {tarefa['tarefa']} (Prioridade: {tarefa['prioridade']})")
+    
+    elif opcao == "3":
+        remover_tarefa = input("Digite a tarefa que deseja remover: ")
+        for tarefa in tarefas:
+            if tarefa["tarefa"] == remover_tarefa:
+                tarefas.remove(tarefa)
+                print(f"Tarefa '{remover_tarefa}' removida com sucesso!")
+                break
 
-    tarefa = {
-      "nome": nome,
-      "prioridade": prioridade
-    }
-
-    tarefas.append(tarefa)
-    print(f"Tarefa {nome} com prioridade {prioridade} adicionada")
-
-  elif escolha == "2":
-    print("Lista de tarefas:")
-    for tarefa in tarefas:
-      print(f"- {tarefa["nome"]} (Prioridade: {tarefa["prioridade"]})")
-
-  elif escolha == "3":
-    remover = input("Digite o nome da tarefa que deseja remover: ")
-    for tarefa in tarefas:
-      if tarefa["nome"] == remover:
-        tarefas.remove(tarefa)
-        print(f"Tarefa removida: {remover}")
+    elif opcao == "4":
+        print("Saindo do programa. Até mais!")
         break
-    else:
-      print("Tarefa nao encontrada")
 
-  elif escolha == "4":
-      print("Saindo...")
-      break
-  else:
-    print("Opcao invalida")
+    else:
+        print("Opção inválida. Por favor, escolha uma opção válida.")
