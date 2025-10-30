@@ -3,8 +3,8 @@ tarefas = []
 while True:
     print("|---- Menu de Opções ----|")
     print("| 1 - Adicionar tarefa   |")
-    print("| 2 - Remover tarefa     |")
-    print("| 3 - Ver tarefas        |")
+    print("| 2 - Listar tarefas     |")
+    print("| 3 - Remover tarefa     |")
     print("| 4 - Sair               |")
     print("|------------------------|")
 
