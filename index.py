@@ -1,51 +1,69 @@
 tarefas = []
 
-def adicionar_tarfa(adicionar_tarefa, adicionar_prioridade):
-    tarefa = {
-        "tarefa": adicionar_tarefa,
-        "prioridade": adicionar_prioridade
-    }
+def adicionar_tarefa():
+    try:
+        input_adicionar_tarefa = input("Informe a tarefa que deseja adicionar: ")
+        input_adicionar_prioridade = input("Informe a prioridade da tarefa: ")
 
-    tarefas.append(tarefa)
-    print(f"Tarefa '{adicionar_tarefa}' com prioridade '{adicionar_prioridade}' adicionada com sucesso!")
+        tarefa = {
+            "tarefa": input_adicionar_tarefa,
+            "prioridade": input_adicionar_prioridade
+        }
+
+        tarefas.append(tarefa)
+        print(f"Tarefa '{input_adicionar_tarefa}' com prioridade '{input_adicionar_prioridade}' adicionada.")
+    except:
+        print("Erro ao adicionar a tarefa. Tente novamente.")
 
 def listar_tarefas():
-    print("Lista de tarefas:")
-    for tarefa in tarefas:
-        print(f"- {tarefa['tarefa']} (Prioridade: {tarefa['prioridade']})")
-        
-def excluir_tarefa(remover_tarefa):
-    for tarefa in tarefas:
-        if tarefa["tarefa"] == remover_tarefa:
-            tarefas.remove(tarefa)
-            print(f"Tarefa '{remover_tarefa}' removida com sucesso!")
-            break
+    try:
+        if not tarefas:
+            print("Nenhuma tarefa cadastrada.")
+        else:
+            print("=== Lista de Tarefas ===")
+            for tarefa in tarefas:
+                print(f"Tarefa: {tarefa["tarefa"]} - Prioridade: {tarefa["prioridade"]}")
+    except:
+        print("Erro ao listar as tarefas. Tente novamente.")
+
+def remover_tarefa():
+    try:
+        input_remover_tarefa = input("Informe a tarefa que deseja remover: ")
+        tarefa_encontrada = False
+
+        for tarefa in tarefas:
+            if tarefa["tarefa"] == input_remover_tarefa:
+                tarefas.remove(tarefa)
+                tarefa_encontrada = True
+                print(f"Tarefa '{input_remover_tarefa}' removida.")
+                break
+
+        if not tarefa_encontrada:
+            print(f"Tarefa '{input_remover_tarefa}' não encontrada.")
+    except:
+        print("Erro ao remover a tarefa. Tente novamente.")
 
 while True:
-    print("|---- Menu de Opções ----|")
-    print("| 1 - Adicionar tarefa   |")
-    print("| 2 - Listar tarefas     |")
-    print("| 3 - Remover tarefa     |")
-    print("| 4 - Sair               |")
-    print("|------------------------|")
-
-    opcao = input("Escolha uma opcão: ")
-    if opcao == "1":
-        adicionar_tarefa = input("Digite a tarefa que deseja adicionar: ")
-        adicionar_prioridade = input("Digite a prioridade da tarefa (Alta, Média, Baixa): ")
-        
-        adicionar_tarfa(adicionar_tarefa, adicionar_prioridade)
-
-    elif opcao == "2":
-        listar_tarefas()
+    print("=== Menu de Tarefas ===")
+    print("| 1. Adicionar Tarefa |")
+    print("| 2. Listar Tarefas   |")
+    print("| 3. Remover Tarefa   |")
+    print("| 4. Sair             |")
+    print("=======================\n")
     
-    elif opcao == "3":
-        remover_tarefa = input("Digite a tarefa que deseja remover: ")
-        excluir_tarefa(remover_tarefa)
+    try:
+        opcao = int(input("Escolha uma opção: "))
 
-    elif opcao == "4":
-        print("Saindo do programa. Até mais!")
-        break
-
-    else:
-        print("Opção inválida. Por favor, escolha uma opção válida.")
+        if opcao == 1:
+            adicionar_tarefa()
+        elif opcao == 2:
+            listar_tarefas()
+        elif opcao == 3:
+            remover_tarefa()
+        elif opcao == 4:
+            print("Saindo do programa...")
+            break
+        else:
+            print("Opção inválida. Tente novamente.")
+    except ValueError:
+        print("Entrada inválida. Por favor, insira um número.")
