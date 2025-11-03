@@ -1,4 +1,22 @@
+import json
+
 tarefas = []
+
+def salvar_tarefas():
+    with open("tarefas.json", "w") as arquivo:
+        json.dump(tarefas, arquivo) # Salva a lista de tarefas em um arquivo JSON
+    print("Tarefas salvas com sucesso.")
+
+def carregar_tarefas():
+    global tarefas
+    try:
+        with open("tarefas.json", "r") as arquivo:
+            tarefas = json.load(arquivo) # Carrega a lista de tarefas do arquivo JSON
+        print("Tarefas carregadas com sucesso.")
+        return tarefas
+    except:
+        print("Nenhum arquivo de tarefas encontrado. Iniciando com uma lista vazia.")
+        return []
 
 def adicionar_tarefa():
     try:
@@ -43,12 +61,15 @@ def remover_tarefa():
     except:
         print("Erro ao remover a tarefa. Tente novamente.")
 
+tarefa = carregar_tarefas()
+
 while True:
     print("=== Menu de Tarefas ===")
     print("| 1. Adicionar Tarefa |")
     print("| 2. Listar Tarefas   |")
     print("| 3. Remover Tarefa   |")
-    print("| 4. Sair             |")
+    print("| 4. Salvar Tarefas   |")
+    print("| 5. Sair             |")
     print("=======================\n")
     
     try:
@@ -61,6 +82,8 @@ while True:
         elif opcao == 3:
             remover_tarefa()
         elif opcao == 4:
+            salvar_tarefas()
+        elif opcao == 5:
             print("Saindo do programa...")
             break
         else:
